@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { generateMetadata as getMetadata } from "./utils/metadata";
+import "./main/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,18 +13,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "The Clarionette",
-  description: "Malate Catholic School's Official Student Publication",
-};
+export const metadata: Metadata = getMetadata("/main");
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
+}>) {  return (    <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

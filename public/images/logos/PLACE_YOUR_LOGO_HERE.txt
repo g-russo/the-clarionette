@@ -1,0 +1,45 @@
+📝 LOGO PLACEMENT INSTRUCTIONS
+
+To replace the default "C" text logo with your custom logo:
+
+1. Place your logo image in this folder with the name: logo-main.webp (recommended)
+   - Recommended size: 200x60px or similar aspect ratio
+   - Supported formats: WebP (best for web), PNG, JPG, SVG
+   - WebP provides best compression and quality for web optimization
+
+2. Format priority (website checks in this order):
+   - logo-main.webp (BEST - 25-50% smaller files, excellent quality)
+   - logo-main.svg (vector version - perfect scalability)
+   - logo-main.png (good quality, supports transparency)
+   - logo-main.jpg (smaller file size, no transparency)
+
+3. Optional additional logo files you can add:
+   - logo-small.webp (48x48px for mobile/favicon)
+   - logo-white.webp (white version for dark backgrounds)
+   - logo-horizontal.webp (horizontal layout version)
+
+3. The website will automatically detect and use your logo image.
+   If no logo-main.png is found, it falls back to the text "C" logo.
+
+4. After adding your logo, refresh the website to see the changes.
+
+Example naming:
+✅ logo-main.webp (BEST choice)
+✅ logo-main.svg
+✅ logo-main.png
+✅ logo-main.jpg
+❌ my-logo.webp (wrong name)
+❌ logo.webp (wrong name)
+
+🚀 WebP Benefits:
+- 25-50% smaller file sizes than PNG/JPG
+- Faster page loading
+- Better SEO performance
+- Supports transparency like PNG
+- Modern browser support (95%+ coverage)
+
+For best results, ensure your logo:
+- Has good contrast against white backgrounds
+- Is readable at small sizes (mobile navigation)
+- Maintains quality when scaled
+- Has transparent background if it's not rectangular
