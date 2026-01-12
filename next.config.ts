@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Removed basePath to simplify routing
+  images: {
+    unoptimized: true,
+    domains: [],
+    formats: ['image/webp', 'image/avif'],
+  },
 };
 
 export default nextConfig;

@@ -1,70 +1,24 @@
 import Link from "next/link";
+import PageLayout from "../../components/PageLayout";
 
 export default function SportsPage() {
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            {/* Header */}
-            <header className="border-b border-gray-200 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center">
-                            <Link href="/main" className="flex items-center space-x-3">
-                                <h1 className="text-2xl font-bold text-gray-900 dark:text-white cursor-pointer">
-                                    The Clarionette
-                                </h1>
-                            </Link>
-                        </div>
-                        <nav className="hidden md:flex space-x-8">
-                            <Link href="/main/news" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">News</Link>
-                            <Link href="/main/features" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Features</Link>
-                            <Link href="/main/sports" className="text-green-600 dark:text-green-400 font-semibold">Sports</Link>
-                            <Link href="/main/literary" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Literary</Link>
-                            <Link href="/main/filipino" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Filipino</Link>
-                            <Link href="/main/editorial-board" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Editorial Board</Link>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <PageLayout>
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Page Header */}
                 <div className="mb-8">
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Sports</h1>
                     <p className="text-lg text-gray-600 dark:text-gray-300">Latest scores, highlights, and athletic achievements</p>
                 </div>
 
-                {/* Live Scores Banner */}
-                <section className="mb-8">
-                    <div className="bg-green-600 text-white rounded-lg p-6">
-                        <h2 className="text-xl font-bold mb-4">[Live Scores]</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="bg-green-700 rounded p-4 text-center">
-                                <div className="text-sm">[Team A] vs [Team B]</div>
-                                <div className="text-2xl font-bold">[Score A] - [Score B]</div>
-                                <div className="text-sm">[Status/Time]</div>
-                            </div>
-                            <div className="bg-green-700 rounded p-4 text-center">
-                                <div className="text-sm">[Team C] vs [Team D]</div>
-                                <div className="text-2xl font-bold">[Score C] - [Score D]</div>
-                                <div className="text-sm">[Status/Time]</div>
-                            </div>
-                            <div className="bg-green-700 rounded p-4 text-center">
-                                <div className="text-sm">[Team E] vs [Team F]</div>
-                                <div className="text-2xl font-bold">[Score E] - [Score F]</div>
-                                <div className="text-sm">[Status/Time]</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Sports Categories */}
                 <section className="mb-8">
                     <div className="flex flex-wrap gap-4">
                         <button className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium">[All Sports]</button>
                         <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Basketball]</button>
-                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Football]</button>
-                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Baseball]</button>
-                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Track & Field]</button>
+                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Volleyball]</button>
+                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Badminton]</button>
+                        <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">[Table tennis]</button>
                     </div>
                 </section>
 
@@ -83,11 +37,10 @@ export default function SportsPage() {
                                     <span className="text-xs text-gray-500 dark:text-gray-400">[Reporter] • [Time ago]</span>
                                     <Link href="#" className="text-green-600 dark:text-green-400 hover:underline text-sm">Read</Link>
                                 </div>
-                            </div>
-                        </article>
+                            </div>                        </article>
                     ))}
                 </section>
             </main>
-        </div>
+        </PageLayout>
     );
 }

@@ -1,32 +1,10 @@
 import Link from "next/link";
+import PageLayout from "../../components/PageLayout";
 
 export default function FeaturesPage() {
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            {/* Header */}
-            <header className="border-b border-gray-200 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center">
-                            <Link href="/main" className="flex items-center space-x-3">
-                                <h1 className="text-2xl font-bold text-gray-900 dark:text-white cursor-pointer">
-                                    The Clarionette
-                                </h1>
-                            </Link>
-                        </div>
-                        <nav className="hidden md:flex space-x-8">
-                            <Link href="/main/news" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">News</Link>
-                            <Link href="/main/features" className="text-blue-600 dark:text-blue-400 font-semibold">Features</Link>
-                            <Link href="/main/sports" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Sports</Link>
-                            <Link href="/main/literary" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Literary</Link>
-                            <Link href="/main/filipino" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Filipino</Link>
-                            <Link href="/main/editorial-board" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Editorial Board</Link>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <PageLayout>
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Page Header */}
                 <div className="mb-8">
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Features</h1>
@@ -76,9 +54,8 @@ export default function FeaturesPage() {
                                 </div>
                             </div>
                         </article>
-                    ))}
-                </section>
+                    ))}                </section>
             </main>
-        </div>
+        </PageLayout>
     );
 }
