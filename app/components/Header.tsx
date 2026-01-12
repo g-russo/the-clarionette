@@ -100,12 +100,13 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">              <Link
+            <div className="hidden lg:flex items-center space-x-1">
+              <Link
                 href={DEFAULT_MAIN_ROUTE}
-                className="nav-link text-gray-700 hover:bg-red-50 hover:text-red-600 flex items-center gap-2"
+                className="nav-link px-3 py-2 rounded-lg font-medium text-gray-800 hover:bg-red-50 hover:text-red-600 flex items-center gap-2 whitespace-nowrap transition-all"
               >
-                <Home size={16} />
-                Home
+                <Home size={16} className="flex-shrink-0" />
+                <span className="text-sm">Home</span>
               </Link>
               <Navigation />
             </div>

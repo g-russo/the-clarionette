@@ -81,15 +81,15 @@ export default function MainContent() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
               <Link
-                href="/main/news"
+                href="/news"
                 className="btn-primary bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
                 <Newspaper size={20} />
                 Latest News
               </Link>
               <Link
-                href="/main/features"
-                className="btn-secondary border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-red-600"
+                href="/features"
+                className="btn-secondary bg-yellow-400 text-gray-900 border-2 border-yellow-400 px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-500 hover:border-yellow-500 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all"
               >
                 <FileText size={20} />
                 Feature Stories
@@ -260,11 +260,12 @@ export default function MainContent() {
             ))}
           </div>
         </div>
-      </section>      {/* Newsletter */}
+      </section>      
+      {/* Newsletter */}
       <section className="newsletter py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-4xl font-bold mb-6">Stay Connected</h2>
-          <p className="text-gray-300 text-xl mb-12 max-w-3xl mx-auto text-balance leading-relaxed">
+          <p className="text-white-300 text-xl mb-12 max-w-3xl mx-auto text-balance leading-relaxed">
             Get the latest updates from The Clarionette delivered directly to your inbox. 
             Never miss an important story from our school community.
           </p>

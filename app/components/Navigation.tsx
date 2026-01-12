@@ -7,9 +7,11 @@ import { Newspaper, Trophy, FileText, BookOpen, Flag, Users } from "lucide-react
 
 export default function Navigation() {
   const pathname = usePathname();
-  const navigationRoutes = getMainNavigationRoutes();  const isActive = (routePath: string) => {
-    if (routePath === "/main" && pathname === "/main") return true;
-    if (routePath !== "/main" && pathname.startsWith(routePath)) return true;
+  const navigationRoutes = getMainNavigationRoutes();
+
+  const isActive = (routePath: string) => {
+    if (routePath === "/" && pathname === "/") return true;
+    if (routePath !== "/" && pathname.startsWith(routePath)) return true;
     return false;
   };
 
@@ -23,7 +25,7 @@ export default function Navigation() {
       'Editorial Board': Users
     };
     const IconComponent = icons[label] || FileText;
-    return <IconComponent size={16} />;
+    return <IconComponent size={16} className="flex-shrink-0" />;
   };
 
   return (
@@ -32,14 +34,14 @@ export default function Navigation() {
         <Link
           key={route.path}
           href={route.path}
-          className={`nav-link px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2 ${
+          className={`nav-link px-3 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 whitespace-nowrap ${
             isActive(route.path)
-              ? "bg-red-600 text-white shadow-lg"
-              : "text-gray-700 hover:bg-red-50 hover:text-red-600"
+              ? "bg-red-600 text-white shadow-lg hover:bg-red-700"
+              : "text-gray-800 hover:bg-red-50 hover:text-red-600"
           }`}
         >
           {getRouteIcon(route.label)}
-          <span>{route.label}</span>
+          <span className="text-sm">{route.label}</span>
         </Link>
       ))}
     </nav>

@@ -12,8 +12,8 @@ export default function MobileNavigation() {
   const navigationRoutes = getMainNavigationRoutes();
 
   const isActive = (routePath: string) => {
-    if (routePath === "/main" && pathname === "/main") return true;
-    if (routePath !== "/main" && pathname.startsWith(routePath)) return true;
+    if (routePath === "/" && pathname === "/") return true;
+    if (routePath !== "/" && pathname.startsWith(routePath)) return true;
     return false;
   };
 
@@ -27,7 +27,7 @@ export default function MobileNavigation() {
       'Editorial Board': Users
     };
     const IconComponent = icons[label] || FileText;
-    return <IconComponent size={20} />;
+    return <IconComponent size={20} className="flex-shrink-0" />;
   };
 
   return (
@@ -35,7 +35,7 @@ export default function MobileNavigation() {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600"
+        className="p-2 rounded-lg text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600"
         aria-expanded={isOpen}
         aria-label="Toggle navigation menu"
       >
@@ -45,13 +45,15 @@ export default function MobileNavigation() {
       {/* Mobile menu overlay */}
       {isOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setIsOpen(false)}></div>          <div className="fixed top-0 right-0 w-80 h-full bg-white shadow-xl">
+          <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setIsOpen(false)}></div>
+          
+          <div className="fixed top-0 right-0 w-80 h-full bg-white shadow-xl overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-xl font-bold text-gray-900">Navigation</h2>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                  className="p-2 rounded-lg text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors"
                 >
                   <X size={20} />
                 </button>
@@ -61,13 +63,13 @@ export default function MobileNavigation() {
                 <Link
                   href={DEFAULT_MAIN_ROUTE}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all ${
-                    pathname === "/main"
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+                    pathname === "/"
                       ? "bg-red-600 text-white"
-                      : "text-gray-700 hover:bg-red-50 hover:text-red-600"
+                      : "text-gray-800 hover:bg-red-50 hover:text-red-600"
                   }`}
                 >
-                  <Home size={20} />
+                  <Home size={20} className="flex-shrink-0" />
                   <span>Home</span>
                 </Link>
                 
@@ -76,10 +78,10 @@ export default function MobileNavigation() {
                     key={route.path}
                     href={route.path}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-all ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
                       isActive(route.path)
                         ? "bg-red-600 text-white"
-                        : "text-gray-700 hover:bg-red-50 hover:text-red-600"
+                        : "text-gray-800 hover:bg-red-50 hover:text-red-600"
                     }`}
                   >
                     {getRouteIcon(route.label)}
@@ -90,14 +92,7 @@ export default function MobileNavigation() {
               
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="space-y-3">
-                  {/* <a href="mailto:clarionette@mcs.edu.ph" className="flex items-center space-x-3 text-gray-600 hover:text-red-600 transition-colors">
-                    <Mail size={20} />
-                    <span>Submit Story</span>
-                  </a>
-                  <a href="#" className="flex items-center space-x-3 text-gray-600 hover:text-red-600 transition-colors">
-                    <Phone size={20} />
-                    <span>Follow Us</span>
-                  </a> */}
+                  {/* Contact links can be added here */}
                 </div>
               </div>
             </div>
