@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getMainNavigationRoutes } from "../config/routes";
+import { getMainNavigationRoutes } from "@/app/config/routes";
 import { 
   Mail, 
   Phone, 

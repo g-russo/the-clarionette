@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import Navigation from "./Navigation";
-import MobileNavigation from "./MobileNavigation";
-import { DEFAULT_MAIN_ROUTE } from "../config/routes";
+import Navigation from "@/components/Navigation";
+import MobileNavigation from "@/components/MobileNavigation";
+import { DEFAULT_MAIN_ROUTE } from "@/app/config/routes";
 import { Calendar, Clock, Mail, Phone, Home } from "lucide-react";
 
 // Logo component that handles image fallback
@@ -111,7 +111,7 @@ export default function Header() {
               <Navigation />
             </div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation Button (overlay menu rendered outside) */}
             <div className="lg:hidden">
               <MobileNavigation />
             </div>
