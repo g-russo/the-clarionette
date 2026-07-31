@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { getPageTitle, getPageDescription } from "../utils/routing";
 
 // Generate metadata for any page based on the route
@@ -7,8 +7,8 @@ export function generateMetadata(path: string): Metadata {
     title: getPageTitle(path),
     description: getPageDescription(path),
     keywords: [
-      "The Clarionette",
-      "Malate Catholic School",
+      "The Beacon",
+      "Harrow Hill High School",
       "student publication",
       "news",
       "features",
@@ -17,16 +17,16 @@ export function generateMetadata(path: string): Metadata {
       "Filipino",
       "editorial"
     ],
-    authors: [{ name: "The Clarionette Editorial Board" }],
-    creator: "Malate Catholic School",
-    publisher: "The Clarionette",    icons: {
+    authors: [{ name: "The Beacon Editorial Board" }],
+    creator: "Harrow Hill High School",
+    publisher: "The Beacon",    icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
     },
     openGraph: {
       title: getPageTitle(path),
       description: getPageDescription(path),
-      siteName: "The Clarionette",
+      siteName: "The Beacon",
       type: "website",
       locale: "en_US"
     },

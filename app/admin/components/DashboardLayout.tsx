@@ -12,7 +12,21 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, title }: DashboardLayoutProps) {
   const { isAuthenticated, isLoading } = useAuth();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    try {
+      return localStorage.getItem("sidebarCollapsed") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed((prev) => {
+      const next = !prev;
+      try { localStorage.setItem("sidebarCollapsed", String(next)); } catch {}
+      return next;
+    });
+  };
 
   if (isLoading) {
     return (
@@ -31,7 +45,7 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
       <AdminSidebar isCollapsed={sidebarCollapsed} />
       
       <div className="flex-1 flex flex-col">
-        <AdminHeader onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
+        <AdminHeader onToggleSidebar={toggleSidebar} />
         
         <main className="flex-1 p-6">
           {title && (

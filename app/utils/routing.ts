@@ -1,4 +1,4 @@
-import { RouteConfig, mainRoutes, adminRoutes } from "../config/routes";
+﻿import { RouteConfig, mainRoutes, adminRoutes } from "../config/routes";
 
 // Generate breadcrumbs for the current path
 export function generateBreadcrumbs(path: string): { label: string; href: string }[] {
@@ -35,10 +35,10 @@ export function getPageTitle(path: string): string {
   const route = [...mainRoutes, ...adminRoutes].find(r => r.path === path);
   
   if (route) {
-    return `${route.label} | The Clarionette`;
+    return `${route.label} | The Beacon`;
   }
   
-  return "The Clarionette";
+  return "The Beacon";
 }
 
 // Get page description based on route
@@ -49,7 +49,7 @@ export function getPageDescription(path: string): string {
     return route.description;
   }
   
-  return "Malate Catholic School's Official Student Publication";
+  return "Harrow Hill High School's Official Student Publication";
 }
 
 // Check if current path is active (for navigation highlighting)

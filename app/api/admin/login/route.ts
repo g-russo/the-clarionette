@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 
 // In production, use a proper database and password hashing
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@clarionette.com";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@beacon.com";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123"; // Change this!
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "default-secret-key";
 

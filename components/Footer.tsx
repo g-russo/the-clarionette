@@ -1,37 +1,41 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getMainNavigationRoutes } from "@/app/config/routes";
-import { 
-  Mail, 
-  Phone, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Youtube, 
-  Home, 
-  Newspaper, 
-  Trophy, 
-  FileText, 
-  BookOpen, 
-  Flag, 
+import {
+  Mail,
+  Phone,
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  Home,
+  Newspaper,
+  Trophy,
+  FileText,
+  BookOpen,
+  Flag,
   Users,
   School,
-  Book
+  Book,
+  Feather,
+  CalendarDays,
+  Info,
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSiteConfig } from "@/lib/hooks/useSiteConfig";
 
-// Logo component that handles image fallback
+function TikTokIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.9a8.22 8.22 0 004.8 1.53V7a4.85 4.85 0 01-1.03-.31z" />
+    </svg>
+  );
+}
+
 const LogoComponent = () => {
   const [logoError, setLogoError] = useState(false);
-
-  const handleImageError = () => {
-    console.log("Logo failed to load, showing text fallback");
-    setLogoError(true);
-  };
-
-  // If logo failed to load, show text logo
   if (logoError) {
     return (
       <div className="w-12 h-12 md:w-14 md:h-14 group-hover:scale-105 transition-transform shadow-lg bg-red-600 text-white rounded-lg flex items-center justify-center font-bold text-xs">
@@ -39,48 +43,50 @@ const LogoComponent = () => {
       </div>
     );
   }
-
   return (
     <img
       src="/images/logos/logo-main.webp"
-      alt="The Clarionette Logo"
+      alt="The Beacon Logo"
       width={56}
       height={56}
       className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform shadow-lg rounded-lg"
-      onError={handleImageError}
+      onError={() => setLogoError(true)}
     />
   );
 };
 
 export default function Footer() {
+  const config = useSiteConfig();
   const navigationRoutes = getMainNavigationRoutes();
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
+  const socialLinks = [
+    { url: config.facebook,  Icon: Facebook,  label: "Facebook"  },
+    { url: config.twitter,   Icon: Twitter,   label: "Twitter"   },
+    { url: config.instagram, Icon: Instagram, label: "Instagram" },
+    { url: config.youtube,   Icon: Youtube,   label: "YouTube"   },
+    { url: config.tiktok,    Icon: null,      label: "TikTok"    },
+  ].filter((s) => s.url);
+
   const footerSections = {
     publication: [
-      { label: "About The Clarionette", href: "/editorial-board" },
-      { label: "Editorial Board", href: "/editorial-board" },
-      { label: "Contact Us", href: "mailto:clarionette@mcs.edu.ph" },
-      { label: "Submit a Story", href: "#" },
-      { label: "Archives", href: "#" }
+      { label: "About The Beacon", href: "/about" },
+      { label: "Editorial Board",        href: "/editorial-board" },
+      { label: "Contact Us",             href: `mailto:${config.email}` },
+      { label: "Submit a Story",         href: "/submit" },
+      { label: "Archives",               href: "/news" },
     ],
     school: [
-      { label: "Malate Catholic School", href: "mcs1917@mcsmanila.edu.ph" },
-      { label: "Admissions", href: "#" },
-      { label: "Academic Programs", href: "#" },
-      { label: "School Calendar", href: "#" },
-      { label: "Student Life", href: "#" }
+      { label: "Harrow Hill High School", href: "https://www.harrowhill.edu" },
+      { label: "Admissions",             href: "https://www.harrowhill.edu" },
+      { label: "Academic Programs",      href: "https://www.harrowhill.edu" },
+      { label: "School Calendar",        href: "https://www.harrowhill.edu" },
+      { label: "Student Life",           href: "https://www.harrowhill.edu" },
     ],
-    resources: [
-      { label: "Writing Guidelines", href: "#" },
-      { label: "Publication Schedule", href: "#" },
-      { label: "Media Kit", href: "#" },
-      { label: "Advertisement", href: "#" },
-      { label: "Newsletter", href: "#" }
-    ]
   };
+
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       {/* Main Footer */}
@@ -93,39 +99,45 @@ export default function Footer() {
                 <LogoComponent />
               </div>
               <div>
-                <h3 className="font-display text-2xl font-bold text-gray-900">The Clarionette</h3>
+                <h3 className="font-display text-2xl font-bold text-gray-900">{config.name}</h3>
                 <p className="text-sm text-red-600 font-semibold">Student Publication</p>
               </div>
             </div>
             <p className="text-gray-600 mb-8 leading-relaxed text-base">
-              Malate Catholic School's official student publication, dedicated to informing, 
-              inspiring, and connecting our school community through quality journalism and storytelling.
+              {config.description}
             </p>
-            <div className="flex space-x-3 mb-8">
-              <a href="#" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110">
-                <Youtube size={20} />
-              </a>
-            </div>            
+            {socialLinks.length > 0 && (
+              <div className="flex space-x-3 mb-8">
+                {socialLinks.map(({ url, Icon, label }) => (
+                  <a
+                    key={label}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110"
+                  >
+                    {Icon ? <Icon size={20} /> : <TikTokIcon size={20} />}
+                  </a>
+                ))}
+              </div>
+            )}
             <div className="text-sm text-gray-600 space-y-3">
-              <p className="flex items-center gap-2">
-                <Mail size={16} className="text-red-600" />
-                mcs.clarionette@mcsmanila.edu.ph
-              </p>
-              <p className="flex items-center gap-2">
-                <Phone size={16} className="text-red-600" />
-                (02) 8525 3921
-              </p>
+              {config.email && (
+                <p className="flex items-center gap-2">
+                  <Mail size={16} className="text-red-600" />
+                  {config.email}
+                </p>
+              )}
+              {config.phone && (
+                <p className="flex items-center gap-2">
+                  <Phone size={16} className="text-red-600" />
+                  {config.phone}
+                </p>
+              )}
             </div>
-          </div>          
+          </div>
+
           {/* Sections Navigation */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-gray-900 flex items-center gap-2">
@@ -147,7 +159,11 @@ export default function Footer() {
                      route.label === 'Features' ? <FileText size={16} className="flex-shrink-0" /> :
                      route.label === 'Literary' ? <BookOpen size={16} className="flex-shrink-0" /> :
                      route.label === 'Filipino' ? <Flag size={16} className="flex-shrink-0" /> :
-                     route.label === 'Editorial Board' ? <Users size={16} className="flex-shrink-0" /> : <FileText size={16} className="flex-shrink-0" />}
+                     route.label === 'Opinions' ? <Feather size={16} className="flex-shrink-0" /> :
+                     route.label === 'Events' ? <CalendarDays size={16} className="flex-shrink-0" /> :
+                     route.label === 'About' ? <Info size={16} className="flex-shrink-0" /> :
+                     route.label === 'Editorial Board' ? <Users size={16} className="flex-shrink-0" /> :
+                     <FileText size={16} className="flex-shrink-0" />}
                     <span>{route.label}</span>
                   </Link>
                 </li>
@@ -184,12 +200,14 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerSections.school.map((link, index) => (
                 <li key={index}>
-                  <Link
+                  <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-600 hover:text-red-600 hover:translate-x-1 transition-all text-sm flex items-start"
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -208,7 +226,7 @@ export default function Footer() {
                   Stay Updated
                 </h4>
                 <p className="text-red-50 text-sm">
-                  Subscribe to our newsletter for the latest news and updates from The Clarionette.
+                  Subscribe to our newsletter for the latest news and updates from {config.name}.
                 </p>
               </div>
               <div className="mt-4 md:mt-0 md:w-1/2">
@@ -234,23 +252,23 @@ export default function Footer() {
           <div className="md:flex md:items-center md:justify-between">
             <div className="text-center md:text-left">
               <p className="text-sm text-gray-700">
-                © {currentYear} The Clarionette - Malate Catholic School. All rights reserved.
+                © {currentYear} {config.name} - {config.school}. All rights reserved.
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                Designed with ❤️ by MCS Students
+                Developed by Russ Garcia
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex justify-center md:justify-end space-x-6">
-              <Link href="#" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
+              <Link href="/privacy-policy" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
+              <Link href="/terms" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
                 Terms of Service
               </Link>
-              <Link href="#" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
+              <Link href="/sitemap" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
                 Sitemap
               </Link>
-              <Link href="#" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
+              <Link href="/accessibility" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
                 Accessibility
               </Link>
             </div>

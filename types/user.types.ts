@@ -1,17 +1,18 @@
-/**
- * User types for MongoDB + Express backend
- */
-
-export type UserRole = 'admin' | 'editor' | 'writer' | 'reader';
+import type { Permission, RoleSection } from './permissions.types';
 
 export interface User {
   _id: string;
   name: string;
   email: string;
-  role: UserRole;
+  roleId: string;
+  roleName: string;
+  roleSlug: string;
+  roleSection: RoleSection;
+  permissions: Permission[];
+  isActive: boolean;
   avatar?: string;
   bio?: string;
-  position?: string; // e.g., "Editor-in-Chief", "Sports Editor"
+  position?: string;
   social?: {
     twitter?: string;
     linkedin?: string;
@@ -34,6 +35,6 @@ export interface RegisterUserInput {
   name: string;
   email: string;
   password: string;
-  role?: UserRole;
+  roleId: string;
   position?: string;
 }

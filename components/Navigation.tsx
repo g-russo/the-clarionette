@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getMainNavigationRoutes } from "@/app/config/routes";
-import { Newspaper, Trophy, FileText, BookOpen, Flag, Users } from "lucide-react";
+import { Newspaper, Trophy, FileText, BookOpen, Flag, Users, Feather, CalendarDays, Info } from "lucide-react";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -22,26 +22,29 @@ export default function Navigation() {
       'Features': FileText,
       'Literary': BookOpen,
       'Filipino': Flag,
-      'Editorial Board': Users
+      'Opinions': Feather,
+      'Events': CalendarDays,
+      'About': Info,
+      'Editorial Board': Users,
     };
     const IconComponent = icons[label] || FileText;
-    return <IconComponent size={16} className="flex-shrink-0" />;
+    return <IconComponent size={14} className="flex-shrink-0" />;
   };
 
   return (
-    <nav className="flex items-center gap-1 md:gap-2">
+    <nav className="flex items-center gap-0.5">
       {navigationRoutes.map((route) => (
         <Link
           key={route.path}
           href={route.path}
-          className={`nav-link px-2 md:px-3 py-2 md:py-2.5 rounded-lg font-medium transition-all duration-200 flex items-center gap-1.5 md:gap-2 whitespace-nowrap touch-manipulation min-h-[44px] ${
+          className={`nav-link px-2 lg:px-2.5 py-1.5 rounded-lg font-medium transition-all duration-200 flex items-center gap-1 lg:gap-1.5 whitespace-nowrap touch-manipulation min-h-[38px] text-sm ${
             isActive(route.path)
-              ? "bg-red-600 text-white shadow-lg hover:bg-red-700"
-              : "text-gray-800 hover:bg-red-50 hover:text-red-600"
+              ? "bg-red-600 text-white shadow-sm hover:bg-red-700"
+              : "text-gray-700 hover:bg-red-50 hover:text-red-600"
           }`}
         >
           {getRouteIcon(route.label)}
-          <span className="text-xs md:text-sm">{route.label}</span>
+          <span>{route.label}</span>
         </Link>
       ))}
     </nav>

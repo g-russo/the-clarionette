@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getMainNavigationRoutes, DEFAULT_MAIN_ROUTE } from "@/app/config/routes";
-import { Menu, X, Home, Newspaper, Trophy, FileText, BookOpen, Flag, Users, Mail, Phone } from "lucide-react";
+import { Menu, X, Home, Newspaper, Trophy, FileText, BookOpen, Flag, Users, Mail, Phone, Feather, CalendarDays, Info } from "lucide-react";
 
 export default function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +54,10 @@ export default function MobileNavigation() {
       'Features': FileText,
       'Literary': BookOpen,
       'Filipino': Flag,
-      'Editorial Board': Users
+      'Opinions': Feather,
+      'Events': CalendarDays,
+      'About': Info,
+      'Editorial Board': Users,
     };
     const IconComponent = icons[label] || FileText;
     return <IconComponent size={22} className="flex-shrink-0" />;

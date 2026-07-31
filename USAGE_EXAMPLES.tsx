@@ -1,4 +1,4 @@
-/**
+﻿/**
  * EXAMPLE: How to use the new API structure in your pages
  * This shows practical examples of fetching and displaying data
  */
@@ -362,7 +362,7 @@ export default async function EditorialBoardPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Editorial Board</h1>
             <p className="text-lg text-gray-600">
-              Meet the team behind The Clarionette
+              Meet the team behind The Beacon
             </p>
           </div>
 
