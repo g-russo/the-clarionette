@@ -1,6 +1,6 @@
-# Image Assets Structure
+﻿# Image Assets Structure
 
-This folder contains all image assets for The Clarionette website, organized by purpose and usage.
+This folder contains all image assets for The Beacon website, organized by purpose and usage.
 
 ## 📁 Folder Structure
 
@@ -109,7 +109,7 @@ import Image from 'next/image';
 // Logo usage
 <Image
   src="/images/logos/logo-main.svg"
-  alt="The Clarionette Logo"
+  alt="The Beacon Logo"
   width={200}
   height={60}
   priority // for above-the-fold images

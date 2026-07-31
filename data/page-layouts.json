@@ -1,0 +1,10 @@
+{
+  "homepage": "featured_hero",
+  "news": "full_grid",
+  "features": "magazine",
+  "sports": "full_grid",
+  "literary": "single_column",
+  "filipino": "full_grid",
+  "article": "magazine",
+  "opinions": "editorial_list"
+}
