@@ -107,10 +107,12 @@ export interface ArticleListItem {
   excerpt: string;
   category: ArticleCategory;
   workflowStatus: ArticleWorkflowStatus;
+  featured: boolean;
   author: {
     _id: string;
     name: string;
     avatar?: string;
+    roleName?: string;
   };
   coverImage?: string;
   readTime: number;

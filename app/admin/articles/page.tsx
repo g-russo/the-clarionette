@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import DashboardLayout from "../components/DashboardLayout";
 import { useAuth } from "../components/AuthContext";
@@ -17,7 +17,7 @@ const STATUSES: Array<{ value: string; label: string }> = [
   ...Object.entries(WORKFLOW_STATUS_LABELS).map(([value, label]) => ({ value, label })),
 ];
 
-export default function AdminArticles() {
+function AdminArticlesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { hasPermission } = useAuth();
@@ -267,5 +267,13 @@ export default function AdminArticles() {
         </div>
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function AdminArticles() {
+  return (
+    <Suspense fallback={null}>
+      <AdminArticlesContent />
+    </Suspense>
   );
 }

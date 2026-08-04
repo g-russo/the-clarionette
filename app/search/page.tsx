@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
@@ -75,7 +75,7 @@ function ArticleCard({ article }: { article: ArticleListItem }) {
 
 const LIMIT = 10;
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -263,5 +263,13 @@ export default function SearchPage() {
         )}
       </main>
     </PageLayout>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={null}>
+      <SearchPageContent />
+    </Suspense>
   );
 }
