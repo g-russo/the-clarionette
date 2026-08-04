@@ -1,11 +1,14 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Lock, Mail, AlertCircle } from "lucide-react";
+import { useAuth, type AuthUser } from "../components/AuthContext";
+import { API_CONFIG } from "@/lib/api/config";
 
 export default function AdminLogin() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +20,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/admin/login", {
+      const response = await fetch(`${API_CONFIG.BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -26,14 +29,15 @@ export default function AdminLogin() {
       const data = await response.json();
 
       if (response.ok) {
-        // Set cookie and redirect
-        document.cookie = `admin_auth=${data.token}; path=/; max-age=86400; SameSite=Strict`;
+        // Set cookie so middleware allows access to /admin/* routes
+        document.cookie = `admin_auth=${data.token}; path=/; max-age=604800; SameSite=Strict`;
+        login(data.user as AuthUser, data.token as string);
         router.push("/admin/dashboard");
       } else {
-        setError(data.error || "Invalid credentials");
+        setError(data.message || "Invalid credentials");
       }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
+    } catch {
+      setError("Could not connect to the server. Make sure the backend is running.");
     } finally {
       setLoading(false);
     }
@@ -47,7 +51,7 @@ export default function AdminLogin() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4">
             <Lock className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">The Clarionette</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">The Beacon</h1>
           <p className="text-gray-400">Admin Portal</p>
         </div>
 
@@ -77,7 +81,7 @@ export default function AdminLogin() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="admin@clarionette.com"
+                  placeholder="admin@beacon.com"
                   required
                 />
               </div>

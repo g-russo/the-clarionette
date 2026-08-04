@@ -1,8 +1,9 @@
-// Central routing configuration for The Clarionette
+﻿// Central routing configuration for The Beacon
 export interface RouteConfig {
   path: string;
   label: string;
   description?: string;
+  hideFromNav?: boolean;
 }
 
 export interface RouteSection {
@@ -43,10 +44,79 @@ export const mainRoutes: RouteConfig[] = [
     description: "Filipino language content and cultural articles"
   },
   {
+    path: "/opinions",
+    label: "Opinions",
+    description: "Opinion pieces and editorials from our staff"
+  },
+  {
+    path: "/events",
+    label: "Events",
+    description: "Upcoming and past school events"
+  },
+  {
+    path: "/about",
+    label: "About",
+    description: "History, mission, and contact info"
+  },
+  {
     path: "/editorial-board",
     label: "Editorial Board",
     description: "Meet our editorial team"
-  }
+  },
+  {
+    path: "/articles",
+    label: "Article",
+    description: "Individual article detail pages",
+    hideFromNav: true,
+  },
+  {
+    path: "/search",
+    label: "Search",
+    description: "Article search results",
+    hideFromNav: true,
+  },
+  {
+    path: "/authors",
+    label: "Author",
+    description: "Individual author profile pages",
+    hideFromNav: true,
+  },
+  {
+    path: "/tags",
+    label: "Tag",
+    description: "Articles filtered by tag",
+    hideFromNav: true,
+  },
+  {
+    path: "/privacy-policy",
+    label: "Privacy Policy",
+    description: "Privacy policy and data handling",
+    hideFromNav: true,
+  },
+  {
+    path: "/terms",
+    label: "Terms of Service",
+    description: "Terms and conditions for using this site",
+    hideFromNav: true,
+  },
+  {
+    path: "/accessibility",
+    label: "Accessibility",
+    description: "Accessibility statement and features",
+    hideFromNav: true,
+  },
+  {
+    path: "/sitemap",
+    label: "Sitemap",
+    description: "Complete map of site pages",
+    hideFromNav: true,
+  },
+  {
+    path: "/submit",
+    label: "Submit a Story",
+    description: "Submit a story tip or contribution",
+    hideFromNav: true,
+  },
 ];
 
 // Admin routes
@@ -92,8 +162,7 @@ export const getRouteByPath = (path: string): RouteConfig | undefined => {
 };
 
 export const getMainNavigationRoutes = (): RouteConfig[] => {
-  // Return all main routes except the home route for navigation
-  return mainRoutes.filter(route => route.path !== "/");
+  return mainRoutes.filter(route => route.path !== "/" && !route.hideFromNav);
 };
 
 export const isMainRoute = (path: string): boolean => {
